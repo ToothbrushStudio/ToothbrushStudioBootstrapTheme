@@ -1,0 +1,15 @@
+/*!
+ * Toothbrush Studio Bootstrap Theme (@toothbrushstudio/bootstrap-theme)
+ * The default theme for Chomponents. Built on Bootstrap (MIT) — see LICENSE.
+ */
+
+// Import order is load-bearing:
+//   1. Nunito web font — a plain CSS @import, which must lead the output.
+//   2. Bootstrap functions — so our overrides can call Bootstrap's color helpers.
+//   3. Our variable overrides — the studio palette, type, radius.
+//   4. All of Bootstrap — compiled with the overrides above.
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
+
+@import "bootstrap/scss/functions";
+@import "variables";
+@import "bootstrap/scss/bootstrap";

@@ -39,10 +39,10 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "compile": "sass scss/toothbrush.scss dist/toothbrush.css --style=expanded --no-source-map && sass scss/toothbrush.scss dist/toothbrush.min.css --style=compressed --no-source-map",
+    "compile": "sass scss/toothbrush.scss dist/toothbrush.css --style=expanded --no-source-map --load-path=node_modules --quiet-deps && sass scss/toothbrush.scss dist/toothbrush.min.css --style=compressed --no-source-map --load-path=node_modules --quiet-deps",
     "prefix": "postcss dist/toothbrush.css dist/toothbrush.min.css --replace --no-map",
     "build": "npm run clean && npm run compile && npm run prefix",
-    "watch": "sass --watch scss/toothbrush.scss:dist/toothbrush.css --style=expanded",
+    "watch": "sass --watch scss/toothbrush.scss:dist/toothbrush.css --style=expanded --load-path=node_modules --quiet-deps",
     "test": "node test/assert-dist.mjs"
   },
   "peerDependencies": {

@@ -1,0 +1,36 @@
+// Toothbrush Studio — brand token overrides (imported BEFORE Bootstrap).
+// Sass is the single source of truth for the studio palette. Overriding
+// Bootstrap's individual color variables here flows automatically into its
+// generated $theme-colors map, utilities, and components.
+
+// --- Brand palette (raw) -----------------------------------------------------
+$ts-gum-red:           #b23446; // brand background — NOT a semantic color (exported as --gum-red)
+$ts-pearl:             #eae0c8; // tooth pearl
+$ts-toothpaste-mint:   #a1fbe9; // logo / accent
+$ts-mouthwash-blue:    #1ca9e0; // Listerine-like
+$ts-rotten-green:      #79883b; // rotten-tooth green
+$ts-yellowed-yellow:   #d9bd5e; // yellowed-tooth yellow
+$ts-blood-red:         #9a1b1b; // bloody red
+$ts-cavity-dark:       #241b12; // cavity brown-black
+$ts-dead-tooth:        #9c968b; // muted grey-pearl
+$ts-dead-tooth-border: #6e665b; // darker grey
+
+// --- Bootstrap semantic colors ----------------------------------------------
+// Bootstrap builds $theme-colors from these (each is !default in Bootstrap).
+$primary:   $ts-pearl;
+$secondary: $ts-toothpaste-mint;
+$success:   $ts-rotten-green;
+$info:      $ts-mouthwash-blue;
+$warning:   $ts-yellowed-yellow;
+$danger:    $ts-blood-red;
+$light:     $ts-pearl;
+$dark:      $ts-cavity-dark;
+
+// --- Typography & shape ------------------------------------------------------
+// Nunito leads the sans-serif stack (the @font-face comes from the Google Fonts
+// @import in toothbrush.scss); Bootstrap derives $font-family-base from this.
+$font-family-sans-serif: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol", "Noto Color Emoji";
+
+$border-radius: 0.5rem;
