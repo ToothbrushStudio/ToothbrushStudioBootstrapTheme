@@ -25,6 +25,9 @@
   "main": "dist/toothbrush.css",
   "style": "dist/toothbrush.min.css",
   "sass": "scss/toothbrush.scss",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist",
     "scss"

@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install (locked)
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Assert compiled output carries the brand
+        run: npm test
+
+      - name: Verify committed dist/ is not stale
+        run: |
+          if ! git diff --ignore-cr-at-eol --exit-code -- dist; then
+            echo "::error::dist/ is out of date — run 'npm run build' and commit the result (the CDN serves the committed dist/)."
+            exit 1
+          fi
