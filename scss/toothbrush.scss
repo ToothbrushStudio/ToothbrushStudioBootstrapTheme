@@ -13,3 +13,7 @@
 @import "bootstrap/scss/functions";
 @import "variables";
 @import "bootstrap/scss/bootstrap";
+
+// Studio layer (after Bootstrap): signature components, then the brand token export.
+@import "components";
+@import "tokens-export";

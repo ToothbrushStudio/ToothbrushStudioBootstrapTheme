@@ -12058,3 +12058,23 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem #fff, 0 0 0 0.25rem #258cfb;
+}
+
+.btn {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+:root {
+  --gum-red: #b23446;
+  --tooth-pearl: #eae0c8;
+  --dead-tooth: #9c968b;
+  --dead-tooth-border: #6e665b;
+  --toothpaste-mint: #a1fbe9;
+}

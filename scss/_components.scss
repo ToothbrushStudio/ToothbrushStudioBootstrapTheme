@@ -1,0 +1,20 @@
+// Signature component overrides — imported AFTER Bootstrap so they win the cascade.
+// This is the growth seam: component styling gets added here over time. v1 is
+// deliberately minimal (tokens + a couple of signature touches).
+
+// Signature focus ring — relocated from the website's site.css. A white inner
+// halo + brand-blue outer ring on buttons, nav links, and form controls.
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem #fff, 0 0 0 0.25rem #258cfb;
+}
+
+// Signature buttons — Nunito semibold with a hair of tracking gives the studio's
+// playful-but-clean voice without bespoke shapes.
+.btn {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}

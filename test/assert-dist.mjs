@@ -17,6 +17,11 @@ const css = readFileSync(distPath, 'utf8');
 const checks = [
   // Phase 2 — palette applied to a generated component
   ['.btn-primary is themed pearl (#eae0c8)', /\.btn-primary\s*\{[^}]*#eae0c8/i.test(css)],
+  // Phase 3.1 — studio brand tokens re-emitted as CSS custom properties
+  ['--gum-red token exported (#b23446)', /--gum-red:\s*#b23446/i.test(css)],
+  ['--toothpaste-mint token exported (#a1fbe9)', /--toothpaste-mint:\s*#a1fbe9/i.test(css)],
+  // Phase 3.2 — signature focus ring present (brand-blue ring is unique to our layer)
+  ['signature focus ring present (#258cfb)', /#258cfb/i.test(css)],
 ];
 
 let failed = 0;

@@ -1,0 +1,12 @@
+// Studio brand tokens re-emitted as CSS custom properties.
+// This is the CONTRACT the consuming website depends on: its site.css references
+// var(--gum-red), var(--tooth-pearl), var(--toothpaste-mint), etc., so the theme
+// must keep emitting these exact names. Imported after Bootstrap so they always
+// land in the bundle regardless of Bootstrap's own :root output.
+:root {
+  --gum-red: #{$ts-gum-red};
+  --tooth-pearl: #{$ts-pearl};
+  --dead-tooth: #{$ts-dead-tooth};
+  --dead-tooth-border: #{$ts-dead-tooth-border};
+  --toothpaste-mint: #{$ts-toothpaste-mint};
+}
