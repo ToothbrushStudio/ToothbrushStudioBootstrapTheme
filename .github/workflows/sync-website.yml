@@ -1,0 +1,89 @@
+name: Sync website
+
+# Builds the theme and, if the compiled output differs from the copy pinned in
+# ToothbrushStudioWebsite, opens (or updates) a PR there with the refreshed
+# dist/ files. Never pushes directly to the website's master — merging the PR
+# is the one manual step, and that merge is what triggers the website's own
+# existing Azure deploy workflow.
+#
+# Requires repo secret WEBSITE_SYNC_TOKEN: a fine-grained PAT scoped to
+# `contents:write` + `pull_requests:write` on ToothbrushStudio/ToothbrushStudioWebsite
+# only. Created and stored by a repo admin — not provisioned by this workflow.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout theme
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install (locked)
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Assert compiled output carries the brand
+        run: npm test
+
+      - name: Checkout website
+        uses: actions/checkout@v4
+        with:
+          repository: ToothbrushStudio/ToothbrushStudioWebsite
+          token: ${{ secrets.WEBSITE_SYNC_TOKEN }}
+          path: website
+
+      - name: Diff against the website's pinned copy
+        id: diff
+        run: |
+          THEME_DIST=dist
+          SITE_DIST=website/wwwroot/lib/toothbrush-theme/dist
+          if diff -q "$THEME_DIST/toothbrush.css" "$SITE_DIST/toothbrush.css" >/dev/null 2>&1 \
+            && diff -q "$THEME_DIST/toothbrush.min.css" "$SITE_DIST/toothbrush.min.css" >/dev/null 2>&1; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Copy updated dist into the website checkout
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          cp dist/toothbrush.css website/wwwroot/lib/toothbrush-theme/dist/toothbrush.css
+          cp dist/toothbrush.min.css website/wwwroot/lib/toothbrush-theme/dist/toothbrush.min.css
+
+      - name: Open or update the sync PR
+        if: steps.diff.outputs.changed == 'true'
+        working-directory: website
+        env:
+          GH_TOKEN: ${{ secrets.WEBSITE_SYNC_TOKEN }}
+          THEME_SHA: ${{ github.sha }}
+        run: |
+          git config user.name "toothbrush-theme-sync[bot]"
+          git config user.email "actions@github.com"
+          git checkout -B theme-sync
+          git add wwwroot/lib/toothbrush-theme/dist
+          git commit -m "chore(theme): sync compiled theme from ${THEME_SHA:0:7}"
+          git push --force origin theme-sync
+
+          if gh pr list --repo ToothbrushStudio/ToothbrushStudioWebsite --head theme-sync --state open --json number | grep -q '"number"'; then
+            echo "Existing sync PR updated by the force-push above."
+          else
+            gh pr create \
+              --repo ToothbrushStudio/ToothbrushStudioWebsite \
+              --head theme-sync \
+              --base master \
+              --title "Sync theme: ${THEME_SHA:0:7}" \
+              --body "Generated update to \`wwwroot/lib/toothbrush-theme/dist/\` from ToothbrushStudioBootstrapTheme@${THEME_SHA}. Do not hand-edit these files — see this repo's CLAUDE.md."
+          fi
