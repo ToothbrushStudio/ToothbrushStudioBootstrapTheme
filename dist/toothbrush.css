@@ -12086,6 +12086,10 @@ textarea.form-control-lg {
   --bs-btn-active-color: #b23446;
 }
 
+.table {
+  --bs-table-color: #b23446;
+}
+
 :root {
   --gum-red: #b23446;
   --tooth-pearl: #eae0c8;

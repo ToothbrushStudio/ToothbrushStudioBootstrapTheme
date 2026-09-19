@@ -39,3 +39,11 @@
   --bs-btn-hover-color: #{$ts-gum-red};
   --bs-btn-active-color: #{$ts-gum-red};
 }
+
+// .table's text color derives from --bs-emphasis-color, NOT --bs-body-color, so the
+// $body-bg/$body-color fix above (correctly) fixes the table's background but leaves
+// its text at Bootstrap's default near-black. Same targeted-override pattern as the
+// buttons above, applied to the one property $body-color doesn't reach.
+.table {
+  --bs-table-color: #{$ts-gum-red};
+}

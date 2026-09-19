@@ -31,9 +31,26 @@ const checks = [
   ['--bs-body-color resolves to gum-red (#b23446)', /--bs-body-color:\s*#b23446/i.test(css)],
 
   // Phase 4 — button text on light-background theme colors is gum-red, not Bootstrap's
-  // literal color-contrast() default of black.
+  // literal color-contrast() default of black. Checked per-selector (not just
+  // .btn-primary) since each is a separate grouped-selector match against the same
+  // override rule.
   ['.btn-primary text is gum-red, not black',
     /\.btn-primary,?\s*[\s\S]{0,80}?\{[^}]*--bs-btn-color:\s*#b23446/i.test(css)],
+  ['.btn-secondary text is gum-red, not black',
+    /\.btn-secondary,?\s*[\s\S]{0,80}?\{[^}]*--bs-btn-color:\s*#b23446/i.test(css)],
+  ['.btn-success text is gum-red, not black',
+    /\.btn-success,?\s*[\s\S]{0,80}?\{[^}]*--bs-btn-color:\s*#b23446/i.test(css)],
+  ['.btn-light text is gum-red, not black',
+    /\.btn-light,?\s*[\s\S]{0,80}?\{[^}]*--bs-btn-color:\s*#b23446/i.test(css)],
+  ['.btn-outline-light hover/active text is gum-red, not black',
+    /\.btn-outline-light\s*\{[^}]*--bs-btn-hover-color:\s*#b23446[^}]*--bs-btn-active-color:\s*#b23446/i.test(css)],
+
+  // Phase 4 — .table text color derives from --bs-emphasis-color, a separate token
+  // $body-color doesn't reach; must be an explicit override or it silently regresses
+  // to Bootstrap's default black (this is exactly what the site.css cleanup would have
+  // broken without this override — see scss/_components.scss).
+  ['.table text is gum-red, not black',
+    /\.table\s*\{[^}]*--bs-table-color:\s*#b23446/i.test(css)],
 ];
 
 let failed = 0;

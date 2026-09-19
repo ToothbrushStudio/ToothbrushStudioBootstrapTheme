@@ -72,17 +72,17 @@ jobs:
         run: |
           git config user.name "toothbrush-theme-sync[bot]"
           git config user.email "actions@github.com"
-          git checkout -B theme-sync
+          git checkout -B bot/theme-sync
           git add wwwroot/lib/toothbrush-theme/dist
           git commit -m "chore(theme): sync compiled theme from ${THEME_SHA:0:7}"
-          git push --force origin theme-sync
+          git push --force origin bot/theme-sync
 
-          if gh pr list --repo ToothbrushStudio/ToothbrushStudioWebsite --head theme-sync --state open --json number | grep -q '"number"'; then
+          if gh pr list --repo ToothbrushStudio/ToothbrushStudioWebsite --head bot/theme-sync --state open --json number | grep -q '"number"'; then
             echo "Existing sync PR updated by the force-push above."
           else
             gh pr create \
               --repo ToothbrushStudio/ToothbrushStudioWebsite \
-              --head theme-sync \
+              --head bot/theme-sync \
               --base master \
               --title "Sync theme: ${THEME_SHA:0:7}" \
               --body "Generated update to \`wwwroot/lib/toothbrush-theme/dist/\` from ToothbrushStudioBootstrapTheme@${THEME_SHA}. Do not hand-edit these files — see this repo's CLAUDE.md."
