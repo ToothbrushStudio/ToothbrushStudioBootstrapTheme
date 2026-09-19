@@ -2,14 +2,15 @@
 // This is the growth seam: component styling gets added here over time. v1 is
 // deliberately minimal (tokens + a couple of signature touches).
 
-// Signature focus ring — relocated from the website's site.css. A white inner
-// halo + brand-blue outer ring on buttons, nav links, and form controls.
+// Signature focus ring — a pearl inner halo + toothpaste-mint outer ring on
+// buttons, nav links, and form controls. Token-sourced (not a hardcoded hex)
+// so there is exactly one definition of this ring, here.
 .btn:focus,
 .btn:active:focus,
 .btn-link.nav-link:focus,
 .form-control:focus,
 .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem #fff, 0 0 0 0.25rem #258cfb;
+  box-shadow: 0 0 0 0.1rem #{$ts-pearl}, 0 0 0 0.25rem #{$ts-toothpaste-mint};
 }
 
 // Signature buttons — Nunito semibold with a hair of tracking gives the studio's
@@ -17,4 +18,24 @@
 .btn {
   font-weight: 600;
   letter-spacing: 0.01em;
+}
+
+// Explicit per-color button text overrides — Bootstrap's own button-generation
+// loop calls color-contrast() with literal black/white defaults, which reads as
+// illegible black text on our light theme colors (pearl/mint). Rather than
+// redefining Bootstrap's global $color-contrast-dark/light, these are targeted,
+// per-selector overrides of the CSS custom properties Bootstrap already emits.
+.btn-primary,
+.btn-secondary,
+.btn-success,
+.btn-light {
+  --bs-btn-color: #{$ts-gum-red};
+  --bs-btn-hover-color: #{$ts-gum-red};
+  --bs-btn-active-color: #{$ts-gum-red};
+  --bs-btn-disabled-color: #{$ts-gum-red};
+}
+
+.btn-outline-light {
+  --bs-btn-hover-color: #{$ts-gum-red};
+  --bs-btn-active-color: #{$ts-gum-red};
 }

@@ -26,6 +26,15 @@ $danger:    $ts-blood-red;
 $light:     $ts-pearl;
 $dark:      $ts-cavity-dark;
 
+// --- Base body tokens --------------------------------------------------------
+// $card-bg/$input-bg/$form-select-bg/$table-bg all derive from $body-bg, and
+// $input-color/$table-color from $body-color — leaving these unset meant every
+// one of those components fell back to Bootstrap's stock white/near-black
+// regardless of the $theme-colors overrides above. Setting them here fixes
+// cards, tables, form-controls and selects in one place.
+$body-bg:    $ts-pearl;
+$body-color: $ts-gum-red;
+
 // --- Typography & shape ------------------------------------------------------
 // Nunito leads the sans-serif stack (the @font-face comes from the Google Fonts
 // @import in toothbrush.scss); Bootstrap derives $font-family-base from this.
