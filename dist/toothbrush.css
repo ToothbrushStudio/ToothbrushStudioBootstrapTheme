@@ -12091,6 +12091,11 @@ textarea.form-control-lg {
   --bs-table-color: #b23446;
 }
 
+.form-control-pearl,
+.form-select-pearl {
+  border-color: #b23446;
+}
+
 :root {
   --gum-red: #b23446;
   --tooth-pearl: #eae0c8;
