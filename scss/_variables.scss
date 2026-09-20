@@ -35,6 +35,13 @@ $dark:      $ts-cavity-dark;
 $body-bg:    $ts-pearl;
 $body-color: $ts-gum-red;
 
+// The select caret is baked into an SVG data URI at build time (Bootstrap can't read
+// a runtime CSS variable from inside it), so it doesn't follow $body-color the way
+// the rest of a .form-select's text does — it's stuck at Bootstrap's stock dark gray.
+// Point it at the same $body-color token rather than picking an independent color for
+// it, so it moves whenever body text color does instead of drifting out of sync.
+$form-select-indicator-color: $body-color;
+
 // --- Typography & shape ------------------------------------------------------
 // Nunito leads the sans-serif stack (the @font-face comes from the Google Fonts
 // @import in toothbrush.scss); Bootstrap derives $font-family-base from this.
