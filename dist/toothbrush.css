@@ -12096,6 +12096,13 @@ textarea.form-control-lg {
   border-color: #b23446;
 }
 
+.btn-pearl {
+  --bs-btn-border-color: #b23446;
+  --bs-btn-hover-border-color: #b23446;
+  --bs-btn-active-border-color: #b23446;
+  --bs-btn-disabled-border-color: #b23446;
+}
+
 :root {
   --gum-red: #b23446;
   --tooth-pearl: #eae0c8;

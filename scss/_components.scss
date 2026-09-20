@@ -59,3 +59,16 @@
 .form-select-pearl {
   border-color: $ts-gum-red;
 }
+
+// Pearl-on-pearl button — .btn-primary/.btn-light are themed pearl (see $primary/
+// $light above), so like a borderless text box, one sitting on this theme's own
+// $ts-pearl surface (a card, a panel) has no visible edge either. Opt in with
+// .btn-pearl alongside the existing variant class wherever a button actually sits
+// on pearl — a pearl button on the theme's usual gum-red page background already
+// has plenty of contrast and doesn't need it.
+.btn-pearl {
+  --bs-btn-border-color: #{$ts-gum-red};
+  --bs-btn-hover-border-color: #{$ts-gum-red};
+  --bs-btn-active-border-color: #{$ts-gum-red};
+  --bs-btn-disabled-border-color: #{$ts-gum-red};
+}
