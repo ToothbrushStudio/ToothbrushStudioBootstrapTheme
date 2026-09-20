@@ -47,3 +47,28 @@
 .table {
   --bs-table-color: #{$ts-gum-red};
 }
+
+// Pearl-on-pearl text box — $input-border-color/$form-select-border-color default to
+// Bootstrap's stock light blue-gray border, sized for a white body. Any control that
+// sits on a $ts-pearl surface (the theme's own body/card background, or a consumer's
+// own pearl panel) needs that border darkened or it reads as borderless ("a white box
+// on a white background"). Opt in with .form-control-pearl / .form-select-pearl
+// wherever a control sits on pearl — this is not the global default, since a control
+// on a different surface (dark-tooth panel, etc.) may not need it.
+.form-control-pearl,
+.form-select-pearl {
+  border-color: $ts-gum-red;
+}
+
+// Pearl-on-pearl button — .btn-primary/.btn-light are themed pearl (see $primary/
+// $light above), so like a borderless text box, one sitting on this theme's own
+// $ts-pearl surface (a card, a panel) has no visible edge either. Opt in with
+// .btn-pearl alongside the existing variant class wherever a button actually sits
+// on pearl — a pearl button on the theme's usual gum-red page background already
+// has plenty of contrast and doesn't need it.
+.btn-pearl {
+  --bs-btn-border-color: #{$ts-gum-red};
+  --bs-btn-hover-border-color: #{$ts-gum-red};
+  --bs-btn-active-border-color: #{$ts-gum-red};
+  --bs-btn-disabled-border-color: #{$ts-gum-red};
+}
