@@ -3,6 +3,16 @@
 All notable changes to `@toothbrushstudio/bootstrap-theme` are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.0] — 2026-09-25
+
+### Added
+- `--tooth-pearl-rgb` and `--gum-red-rgb` CSS custom properties: comma-separated R,G,B
+  channel lists derived from `$ts-pearl` / `$ts-gum-red` via Sass `color.red/green/blue()`.
+  Consuming sites can now write `rgba(var(--tooth-pearl-rgb), 0.15)` without re-declaring
+  the channel values locally.
+
+[0.3.0]: https://github.com/ToothbrushStudio/ToothbrushStudioBootstrapTheme/releases/tag/v0.3.0
+
 ## [0.2.0] — 2026-09-19
 
 ### Fixed
