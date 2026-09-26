@@ -12091,6 +12091,11 @@ textarea.form-control-lg {
   --bs-table-color: #b23446;
 }
 
+.card {
+  --bs-link-color-rgb: 178, 52, 70;
+  --bs-link-hover-color-rgb: 139, 40, 54;
+}
+
 :root {
   --gum-red: #b23446;
   --tooth-pearl: #eae0c8;

@@ -60,6 +60,12 @@ const checks = [
     /--tooth-pearl-rgb:\s*234,\s*224,\s*200/.test(css)],
   ['--gum-red-rgb token exported (178, 52, 70)',
     /--gum-red-rgb:\s*178,\s*52,\s*70/.test(css)],
+
+  // Links default to pearl (legible on the gum-red page), but .card is a pearl surface where a
+  // pearl link measures 1.04:1 (invisible). Cards re-point the link variables at gum-red for the
+  // resting state and at a darker red for hover (Bootstrap's own hover is a darker pearl).
+  ['.card links are gum-red (resting) with a red hover, not pearl',
+    /\.card\s*\{\s*--bs-link-color-rgb:\s*178,\s*52,\s*70;\s*--bs-link-hover-color-rgb:\s*\d+,\s*\d+,\s*\d+/.test(css)],
 ];
 
 let failed = 0;

@@ -3,6 +3,15 @@
 All notable changes to `@toothbrushstudio/bootstrap-theme` are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.1] — 2026-09-26
+
+### Fixed
+- Links inside `.card` were pearl on a pearl surface (1.04:1, invisible), and Bootstrap's hover
+  color (a darker pearl) was just as invisible. `.card` now re-points `--bs-link-color-rgb` at
+  gum-red and `--bs-link-hover-color-rgb` at a darker red, both derived from the palette variables.
+
+[0.3.1]: https://github.com/ToothbrushStudio/ToothbrushStudioBootstrapTheme/releases/tag/v0.3.1
+
 ## [0.3.0] — 2026-09-25
 
 ### Added
