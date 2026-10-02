@@ -51,6 +51,21 @@ const checks = [
   // broken without this override — see scss/_components.scss).
   ['.table text is gum-red, not black',
     /\.table\s*\{[^}]*--bs-table-color:\s*#b23446/i.test(css)],
+
+  // Phase 4.2 (feat/rgb-channel-tokens) — RGB channel tokens for rgba() overlay expressions.
+  // The consuming site uses rgba(var(--tooth-pearl-rgb), 0.15) etc., so the theme must
+  // export these exact names with comma-separated R,G,B values derived from the palette.
+  // tooth-pearl (#eae0c8) = 234, 224, 200 — gum-red (#b23446) = 178, 52, 70
+  ['--tooth-pearl-rgb token exported (234, 224, 200)',
+    /--tooth-pearl-rgb:\s*234,\s*224,\s*200/.test(css)],
+  ['--gum-red-rgb token exported (178, 52, 70)',
+    /--gum-red-rgb:\s*178,\s*52,\s*70/.test(css)],
+
+  // Links default to pearl (legible on the gum-red page), but .card is a pearl surface where a
+  // pearl link measures 1.04:1 (invisible). Cards re-point the link variables at gum-red for the
+  // resting state and at a darker red for hover (Bootstrap's own hover is a darker pearl).
+  ['.card links are gum-red (resting) with a red hover, not pearl',
+    /\.card\s*\{\s*--bs-link-color-rgb:\s*178,\s*52,\s*70;\s*--bs-link-hover-color-rgb:\s*\d+,\s*\d+,\s*\d+/.test(css)],
 ];
 
 let failed = 0;

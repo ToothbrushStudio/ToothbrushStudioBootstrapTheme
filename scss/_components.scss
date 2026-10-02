@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Signature component overrides — imported AFTER Bootstrap so they win the cascade.
 // This is the growth seam: component styling gets added here over time. v1 is
 // deliberately minimal (tokens + a couple of signature touches).
@@ -46,6 +48,25 @@
 // buttons above, applied to the one property $body-color doesn't reach.
 .table {
   --bs-table-color: #{$ts-gum-red};
+  border-radius: #{$border-radius};
+}
+
+// bootstrap's .table-responsive does not have a border-radius by default, but we want
+// to match the rounded corners of all other container components.
+.table-responsive {
+  border-radius: #{$border-radius};
+}
+
+// Links default to pearl, which reads on the gum-red page but disappears on a pearl surface
+// (a pearl link on a .card measures 1.04:1). Cards re-point Bootstrap's link variables at
+// gum-red for the resting state and a darker red for hover; Bootstrap's own hover is a
+// darker pearl, which is just as invisible on a card. Channels come from the palette
+// variables, never hardcoded, and are set as the -rgb variables Bootstrap's `a` rule reads.
+$ts-gum-red-hover: color.adjust($ts-gum-red, $lightness: -10%);
+
+.card {
+  --bs-link-color-rgb: #{color.red($ts-gum-red)}, #{color.green($ts-gum-red)}, #{color.blue($ts-gum-red)};
+  --bs-link-hover-color-rgb: #{color.red($ts-gum-red-hover)}, #{color.green($ts-gum-red-hover)}, #{color.blue($ts-gum-red-hover)};
 }
 
 // Pearl-on-pearl text box — $input-border-color/$form-select-border-color default to

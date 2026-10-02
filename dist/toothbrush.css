@@ -12089,6 +12089,16 @@ textarea.form-control-lg {
 
 .table {
   --bs-table-color: #b23446;
+  border-radius: 0.5rem;
+}
+
+.table-responsive {
+  border-radius: 0.5rem;
+}
+
+.card {
+  --bs-link-color-rgb: 178, 52, 70;
+  --bs-link-hover-color-rgb: 139, 40, 54;
 }
 
 .form-control-pearl,
@@ -12109,4 +12119,6 @@ textarea.form-control-lg {
   --dead-tooth: #9c968b;
   --dead-tooth-border: #6e665b;
   --toothpaste-mint: #a1fbe9;
+  --tooth-pearl-rgb: 234, 224, 200;
+  --gum-red-rgb: 178, 52, 70;
 }

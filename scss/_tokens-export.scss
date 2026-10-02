@@ -1,12 +1,20 @@
+@use 'sass:color';
+
 // Studio brand tokens re-emitted as CSS custom properties.
 // This is the CONTRACT the consuming website depends on: its site.css references
 // var(--gum-red), var(--tooth-pearl), var(--toothpaste-mint), etc., so the theme
 // must keep emitting these exact names. Imported after Bootstrap so they always
 // land in the bundle regardless of Bootstrap's own :root output.
+//
+// The *-rgb tokens expose comma-separated R,G,B channels for use in rgba()
+// overlay expressions: rgba(var(--tooth-pearl-rgb), 0.15). Values are computed
+// by Sass from the palette variables — never hardcode them independently.
 :root {
   --gum-red: #{$ts-gum-red};
   --tooth-pearl: #{$ts-pearl};
   --dead-tooth: #{$ts-dead-tooth};
   --dead-tooth-border: #{$ts-dead-tooth-border};
   --toothpaste-mint: #{$ts-toothpaste-mint};
+  --tooth-pearl-rgb: #{color.red($ts-pearl)}, #{color.green($ts-pearl)}, #{color.blue($ts-pearl)};
+  --gum-red-rgb: #{color.red($ts-gum-red)}, #{color.green($ts-gum-red)}, #{color.blue($ts-gum-red)};
 }
