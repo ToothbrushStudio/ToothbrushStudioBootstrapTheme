@@ -48,6 +48,13 @@
 // buttons above, applied to the one property $body-color doesn't reach.
 .table {
   --bs-table-color: #{$ts-gum-red};
+  border-radius: #{$ts-border-radius};
+}
+
+// bootstrap's .table-responsive does not have a border-radius by default, but we want
+// to match the rounded corners of all other container components.
+.table-responsive {
+  border-radius: #{$ts-border-radius};
 }
 
 // Links default to pearl, which reads on the gum-red page but disappears on a pearl surface
