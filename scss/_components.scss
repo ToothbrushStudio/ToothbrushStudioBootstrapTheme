@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use 'sass:string';
 
 // Signature component overrides — imported AFTER Bootstrap so they win the cascade.
 // This is the growth seam: component styling gets added here over time. v1 is
@@ -13,6 +14,29 @@
 .form-control:focus,
 .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem #{$ts-pearl}, 0 0 0 0.25rem #{$ts-toothpaste-mint};
+}
+
+// Checked checkboxes/radios — gum-red fill with a tooth-pearl mark (Bootstrap's stock mark is
+// white, and its fill would otherwise follow the pearl primary). The mark SVGs are re-declared
+// here because a data URI can't reference a CSS variable; the pearl hex comes from the token.
+$ts-pearl-svg: '%23#{string.slice(#{$ts-pearl}, 2)}';
+
+.form-check-input:checked,
+.form-check-input[type='checkbox']:indeterminate {
+  background-color: var(--gum-red);
+  border-color: var(--gum-red);
+}
+
+.form-check-input:checked[type='checkbox'] {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='#{$ts-pearl-svg}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+.form-check-input:checked[type='radio'] {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='#{$ts-pearl-svg}'/%3e%3c/svg%3e");
+}
+
+.form-check-input[type='checkbox']:indeterminate {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='#{$ts-pearl-svg}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
 }
 
 // Signature buttons — Nunito semibold with a hair of tracking gives the studio's
