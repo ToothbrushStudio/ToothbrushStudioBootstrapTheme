@@ -12067,10 +12067,13 @@ textarea.form-control-lg {
   box-shadow: 0 0 0 0.1rem #eae0c8, 0 0 0 0.25rem #a1fbe9;
 }
 
+.form-check-input {
+  border: 1px solid var(--tooth-pearl);
+}
+
 .form-check-input:checked,
 .form-check-input[type=checkbox]:indeterminate {
   background-color: var(--gum-red);
-  border-color: var(--gum-red);
 }
 
 .form-check-input:checked[type=checkbox] {

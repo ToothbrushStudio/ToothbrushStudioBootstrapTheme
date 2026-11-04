@@ -21,10 +21,15 @@
 // here because a data URI can't reference a CSS variable; the pearl hex comes from the token.
 $ts-pearl-svg: '%23#{string.slice(#{$ts-pearl}, 2)}';
 
+// The tooth-pearl 1px border keeps unchecked and checked boxes visible on a gum-red page
+// (the checked border stays pearl rather than matching the gum-red fill).
+.form-check-input {
+  border: 1px solid var(--tooth-pearl);
+}
+
 .form-check-input:checked,
 .form-check-input[type='checkbox']:indeterminate {
   background-color: var(--gum-red);
-  border-color: var(--gum-red);
 }
 
 .form-check-input:checked[type='checkbox'] {
