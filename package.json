@@ -42,7 +42,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "compile": "sass scss/toothbrush.scss dist/toothbrush.css --style=expanded --no-source-map --load-path=node_modules --quiet-deps && sass scss/toothbrush.scss dist/toothbrush.min.css --style=compressed --no-source-map --load-path=node_modules --quiet-deps",
+    "compile": "sass scss/toothbrush.scss dist/toothbrush.css --style=expanded --no-source-map --load-path=node_modules --quiet-deps && sass scss/toothbrush.scss dist/toothbrush.min.css --style=compressed --no-charset --no-source-map --load-path=node_modules --quiet-deps",
     "prefix": "postcss dist/toothbrush.css dist/toothbrush.min.css --replace --no-map",
     "build": "npm run clean && npm run compile && npm run prefix",
     "watch": "sass --watch scss/toothbrush.scss:dist/toothbrush.css --style=expanded --load-path=node_modules --quiet-deps",
@@ -54,7 +54,7 @@
   "devDependencies": {
     "autoprefixer": "10.4.20",
     "bootstrap": "5.3.3",
-    "postcss": "8.4.47",
+    "postcss": "8.5.32",
     "postcss-cli": "11.0.0",
     "rimraf": "6.0.1",
     "sass": "1.77.8"
