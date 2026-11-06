@@ -42,7 +42,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "compile": "sass scss/toothbrush.scss dist/toothbrush.css --style=expanded --no-source-map --load-path=node_modules --quiet-deps && sass scss/toothbrush.scss dist/toothbrush.min.css --style=compressed --no-source-map --load-path=node_modules --quiet-deps",
+    "compile": "sass scss/toothbrush.scss dist/toothbrush.css --style=expanded --no-source-map --load-path=node_modules --quiet-deps && sass scss/toothbrush.scss dist/toothbrush.min.css --style=compressed --no-charset --no-source-map --load-path=node_modules --quiet-deps",
     "prefix": "postcss dist/toothbrush.css dist/toothbrush.min.css --replace --no-map",
     "build": "npm run clean && npm run compile && npm run prefix",
     "watch": "sass --watch scss/toothbrush.scss:dist/toothbrush.css --style=expanded --load-path=node_modules --quiet-deps",
