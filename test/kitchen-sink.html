@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Theme kitchen sink</title>
+  <!-- Visual check for the compiled theme: run `npm run build`, then open this file.
+       Every Bootstrap component that draws a colour, on both of the theme's surfaces:
+       the gum-red page (pearl text, as the Toothbrush Studio site uses it) and pearl
+       cards. Anything that still looks like stock Bootstrap (cool gray, blue, pink) is a
+       gap in scss/_variables.scss. This file is not shipped (package.json "files"). -->
+  <link rel="stylesheet" href="../dist/toothbrush.css">
+  <style>
+    /* Only the page frame lives here: the gum-red page the site paints behind content. */
+    .ks-page { background-color: var(--gum-red); color: var(--tooth-pearl); }
+  </style>
+</head>
+<body>
+<main class="ks-page py-4">
+  <div class="container">
+    <h1>Theme kitchen sink</h1>
+
+    <h2 class="h4 mt-4">On the gum-red page</h2>
+    <p>Body text with <code>inline code</code>, a hash <code>f8712d9d886876e76d8ed3e5042f5ed3</code>,
+      <mark>marked text</mark>, <kbd>Ctrl</kbd> + <kbd>C</kbd>, a <a href="#">link</a>.
+      (Body-secondary text belongs on pearl surfaces: see the card.)</p>
+    <pre><code>pre code block
+second line</code></pre>
+    <p>
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-success">Success</button>
+      <button class="btn btn-info">Info</button>
+      <button class="btn btn-warning">Warning</button>
+      <button class="btn btn-danger">Danger</button>
+      <button class="btn btn-light">Light</button>
+      <button class="btn btn-dark">Dark</button>
+      <button class="btn btn-outline-light">Outline light</button>
+      <button class="btn btn-primary" disabled>Disabled</button>
+    </p>
+    <p>
+      <span class="badge text-bg-primary">primary</span>
+      <span class="badge text-bg-secondary">secondary</span>
+      <span class="badge text-bg-success">success</span>
+      <span class="badge text-bg-info">info</span>
+      <span class="badge text-bg-warning">warning</span>
+      <span class="badge text-bg-danger">danger</span>
+      <span class="badge text-bg-dark">dark</span>
+      <button type="button" class="btn-close" aria-label="Close"></button>
+    </p>
+
+    <div class="row g-3 mt-2">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Card header</div>
+          <div class="card-body">
+            <p>Card text with <code>inline code</code>, <mark>marked</mark>, a <a href="#">link</a>,
+              <span class="text-body-secondary">secondary</span>,
+              <span class="text-body-emphasis">emphasis</span> and <kbd>kbd</kbd>.</p>
+            <input class="form-control mb-2" placeholder="Placeholder text">
+            <input class="form-control form-control-pearl mb-2" value="form-control-pearl">
+            <input class="form-control mb-2" value="Disabled input" disabled>
+            <select class="form-select mb-2"><option>Select</option></select>
+            <div class="form-check"><input class="form-check-input" type="checkbox" checked id="c1"><label class="form-check-label" for="c1">Checked</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" id="r1"><label class="form-check-label" for="r1">Radio</label></div>
+            <input class="form-control is-valid mt-2" value="Valid">
+            <input class="form-control is-invalid mt-2" value="Invalid">
+            <div class="invalid-feedback d-block">Invalid feedback text.</div>
+            <button type="button" class="btn-close mt-2" aria-label="Close"></button>
+          </div>
+          <div class="card-footer">Card footer</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <ul class="nav nav-tabs mb-2">
+              <li class="nav-item"><a class="nav-link active" href="#">Active</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+              <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Disabled</a></li>
+            </ul>
+            <table class="table table-sm table-striped table-hover mb-2">
+              <thead><tr><th>Option</th><th>Meaning</th></tr></thead>
+              <tbody>
+                <tr><td><code>--style</code></td><td>Glitch or rot</td></tr>
+                <tr><td><code>--out</code></td><td>Output file</td></tr>
+                <tr><td><code>--key</code></td><td>License key</td></tr>
+              </tbody>
+            </table>
+            <ul class="list-group mb-2">
+              <li class="list-group-item active">Active item</li>
+              <a href="#" class="list-group-item list-group-item-action">Action item</a>
+              <li class="list-group-item disabled">Disabled item</li>
+            </ul>
+            <nav><ul class="pagination mb-0">
+              <li class="page-item disabled"><span class="page-link">Prev</span></li>
+              <li class="page-item active"><span class="page-link">1</span></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+            </ul></nav>
+          </div>
+        </div>
+        <div class="alert alert-primary py-2">alert-primary</div>
+        <div class="alert alert-success py-2">alert-success with <code>code</code></div>
+        <div class="alert alert-warning py-2">alert-warning</div>
+        <div class="alert alert-danger py-2">alert-danger</div>
+        <div class="p-2 mb-2 bg-body-secondary text-body rounded">bg-body-secondary</div>
+        <div class="p-2 mb-2 bg-body-tertiary text-body border rounded">bg-body-tertiary with .border</div>
+        <div class="progress"><div class="progress-bar" style="width: 60%">60%</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
