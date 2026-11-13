@@ -3,6 +3,34 @@
 All notable changes to `@toothbrushstudio/bootstrap-theme` are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.0] — 2026-11-13
+
+A full pass so that no component falls back to Bootstrap's stock colours.
+`test/kitchen-sink.html` shows every coloured component on both surfaces (the gum-red
+page and pearl cards); open it after `npm run build` to check a change by eye.
+
+### Changed
+- **Gray scale is warm.** `$gray-100`…`$gray-900` run from pearl toward cavity-dark,
+  anchored on the dead-tooth greys, replacing Bootstrap's cool blue-gray. Borders, table
+  lines, disabled inputs and secondary/tertiary backgrounds follow.
+- **`<code>` follows the surrounding text colour** with a thin outline in that colour,
+  replacing Bootstrap's pink (1.34:1 on the gum-red page).
+- **`<mark>`** is cavity-dark text on a yellowed highlight; **`<kbd>`** is a cavity-dark key
+  with pearl text, which reads on both surfaces.
+- Emphasis text and the close button's X are cavity-dark instead of black.
+- `.btn-success` text is cavity-dark (4.35:1); gum-red on rotten-green measured 1.55:1.
+- **Dark mode is off** (`$enable-dark-mode: false`). It applied Bootstrap's stock dark palette.
+
+### Fixed
+- Active list-group items, the active page in pagination, nav-pills, dropdown active items
+  and the progress bar were pearl text on pearl. They are now gum-red with pearl text.
+- Tab links and pagination links inside `.card` were pearl on pearl; cards now re-point the
+  hex `--bs-link-color` too, not only the `-rgb` pair.
+- Striped, hovered and active table rows used cavity-dark/black text while other rows were
+  gum-red; `$table-color` is now body text, so all rows match.
+
+[0.4.0]: https://github.com/ToothbrushStudio/ToothbrushStudioBootstrapTheme/releases/tag/v0.4.0
+
 ## [0.3.1] — 2026-09-26
 
 ### Fixed

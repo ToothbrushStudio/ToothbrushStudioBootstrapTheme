@@ -26,6 +26,22 @@ $danger:    $ts-blood-red;
 $light:     $ts-pearl;
 $dark:      $ts-cavity-dark;
 
+// --- Warm gray scale ---------------------------------------------------------
+// Bootstrap's stock grays are a cool blue-gray sized for a white page, and they
+// drive borders, table lines, disabled inputs, secondary/tertiary backgrounds and
+// the like. Here the scale runs from pearl toward cavity-dark instead, anchored on
+// the two dead-tooth palette greys, so every gray-derived surface stays in the
+// warm family. Each step is the share of cavity-dark mixed into pearl.
+$gray-100: mix($ts-cavity-dark, $ts-pearl, 4%);
+$gray-200: mix($ts-cavity-dark, $ts-pearl, 10%);
+$gray-300: mix($ts-cavity-dark, $ts-pearl, 18%);
+$gray-400: mix($ts-cavity-dark, $ts-pearl, 28%);
+$gray-500: $ts-dead-tooth;
+$gray-600: $ts-dead-tooth-border;
+$gray-700: mix($ts-cavity-dark, $ts-pearl, 75%);
+$gray-800: mix($ts-cavity-dark, $ts-pearl, 85%);
+$gray-900: mix($ts-cavity-dark, $ts-pearl, 93%);
+
 // --- Base body tokens --------------------------------------------------------
 // $card-bg/$input-bg/$form-select-bg/$table-bg all derive from $body-bg, and
 // $input-color/$table-color from $body-color — leaving these unset meant every
@@ -41,6 +57,52 @@ $body-color: $ts-gum-red;
 // Point it at the same $body-color token rather than picking an independent color for
 // it, so it moves whenever body text color does instead of drifting out of sync.
 $form-select-indicator-color: $body-color;
+
+// "Emphasis" text (nav-tab active links, list-group hovers, .text-body-emphasis) and the
+// close button's X default to pure black, which reads as foreign next to gum-red text.
+// Cavity-dark keeps them stronger than body text but in the palette. The close button's
+// X is an SVG data URI like the select caret, so it needs its own variable.
+$body-emphasis-color: $ts-cavity-dark;
+$btn-close-color:     $ts-cavity-dark;
+
+// <code> defaults to Bootstrap's pink, which is hard to read on both of this theme's
+// surfaces (gum-red page, pearl cards). The variable points at body text so
+// --bs-code-color carries no stock pink; _components.scss then makes <code> follow the
+// surrounding text colour, so it reads on whichever surface it sits on.
+$code-color: $body-color;
+
+// <mark>: Bootstrap's pale stock yellow becomes yellowed-yellow softened toward pearl.
+// Gum-red text can't reach 4.5:1 on any yellow (it only just passes on pearl), so marked
+// text is cavity-dark, which also keeps the highlight legible on the gum-red page.
+$mark-bg:    mix($ts-yellowed-yellow, $ts-pearl, 60%);
+$mark-color: $ts-cavity-dark;
+
+// <kbd> defaults to body-color on body-bg, i.e. a gum-red key, which vanishes on a
+// gum-red page. A cavity-dark key with pearl text reads on both surfaces.
+$kbd-bg:    $ts-cavity-dark;
+$kbd-color: $ts-pearl;
+
+// "Active" components (list-group, pagination, nav-pills, dropdown items, form-range thumb,
+// input focus border) default to $primary with white text: pearl-on-pearl with an
+// invisible label. Gum-red with pearl text matches the checked checkboxes in
+// _components.scss.
+$component-active-bg:    $ts-gum-red;
+$component-active-color: $ts-pearl;
+
+// The progress bar has its own copy of the same $primary/white default.
+$progress-bar-bg:    $component-active-bg;
+$progress-bar-color: $component-active-color;
+
+// Table text follows body text. Bootstrap's default is the emphasis colour, and striped,
+// hover and active rows read their own variables derived from this one, so the
+// .table override in _components.scss alone left those rows cavity-dark.
+$table-color: $body-color;
+
+// --- Color modes -------------------------------------------------------------
+// The theme has one design: gum-red and pearl. Bootstrap's dark mode would switch a
+// page with data-bs-theme="dark" to Bootstrap's own stock dark palette, which shares
+// nothing with this one, so it is off. A themed dark mode would be a new feature.
+$enable-dark-mode: false;
 
 // --- Typography & shape ------------------------------------------------------
 // Nunito leads the sans-serif stack (the @font-face comes from the Google Fonts

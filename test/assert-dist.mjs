@@ -38,8 +38,10 @@ const checks = [
     /\.btn-primary,?\s*[\s\S]{0,80}?\{[^}]*--bs-btn-color:\s*#b23446/i.test(css)],
   ['.btn-secondary text is gum-red, not black',
     /\.btn-secondary,?\s*[\s\S]{0,80}?\{[^}]*--bs-btn-color:\s*#b23446/i.test(css)],
-  ['.btn-success text is gum-red, not black',
-    /\.btn-success,?\s*[\s\S]{0,80}?\{[^}]*--bs-btn-color:\s*#b23446/i.test(css)],
+  // Success is the exception: rotten-green is mid-tone, so its text is cavity-dark
+  // (4.35:1); gum-red measured 1.55:1.
+  ['.btn-success text is cavity-dark, not gum-red or black',
+    /\.btn-success\s*\{[^}]*--bs-btn-color:\s*#241b12/i.test(css)],
   ['.btn-light text is gum-red, not black',
     /\.btn-light,?\s*[\s\S]{0,80}?\{[^}]*--bs-btn-color:\s*#b23446/i.test(css)],
   ['.btn-outline-light hover/active text is gum-red, not black',
@@ -65,7 +67,32 @@ const checks = [
   // pearl link measures 1.04:1 (invisible). Cards re-point the link variables at gum-red for the
   // resting state and at a darker red for hover (Bootstrap's own hover is a darker pearl).
   ['.card links are gum-red (resting) with a red hover, not pearl',
-    /\.card\s*\{\s*--bs-link-color-rgb:\s*178,\s*52,\s*70;\s*--bs-link-hover-color-rgb:\s*\d+,\s*\d+,\s*\d+/.test(css)],
+    /\.card\s*\{[^}]*--bs-link-color-rgb:\s*178,\s*52,\s*70;\s*--bs-link-hover-color-rgb:\s*\d+,\s*\d+,\s*\d+/.test(css)],
+  ['.card nav links and pagination are gum-red too (hex --bs-link-color)',
+    /\.card\s*\{[^}]*--bs-link-color:\s*#b23446/i.test(css)],
+
+  // Full color pass — nothing a component draws may fall back to Bootstrap's stock palette.
+  // Stock grays (cool blue-gray), checked anywhere in the bundle:
+  ...['f8f9fa', 'e9ecef', 'dee2e6', 'ced4da', 'adb5bd', '6c757d', '495057', '343a40', '212529']
+    .map((h) => [`stock Bootstrap gray #${h} is gone`, !new RegExp(`#${h}\\b`, 'i').test(css)]),
+  ['gray scale is warm: --bs-gray-500 is dead-tooth (#9c968b)', /--bs-gray-500:\s*#9c968b/i.test(css)],
+  ['--bs-border-color is a warm gray, not stock #dee2e6', /--bs-border-color:\s*#c6bda7/i.test(css)],
+  // <code> was Bootstrap's pink, 1.34:1 on the gum-red page.
+  ['no stock pink code color (#d63384 / #e685b5) outside the unused --bs-pink',
+    !/--bs-code-color:\s*#(d63384|e685b5)/i.test(css)],
+  ['<code> follows the surrounding text color', /(^|\n)code\s*\{[^}]*color:\s*inherit/i.test(css)],
+  ['<mark> is cavity-dark on a yellowed highlight',
+    /--bs-highlight-color:\s*#241b12/i.test(css) && !/#fff3cd/i.test(css)],
+  ['emphasis color is cavity-dark, not black', /--bs-emphasis-color:\s*#241b12/i.test(css)],
+  ['active components are gum-red with pearl text, not pearl-on-pearl',
+    /\.list-group\s*\{[^}]*--bs-list-group-active-color:\s*#eae0c8;[^}]*--bs-list-group-active-bg:\s*#b23446/i.test(css)],
+  ['progress bar is gum-red with pearl text',
+    /--bs-progress-bar-color:\s*#eae0c8;[^}]*--bs-progress-bar-bg:\s*#b23446/i.test(css)],
+  ['striped/hover table rows follow body text (gum-red)',
+    /--bs-table-striped-color:\s*#b23446/i.test(css) && /--bs-table-hover-color:\s*#b23446/i.test(css)],
+  ['<kbd> is a cavity-dark key with pearl text',
+    /kbd\s*\{[^}]*color:\s*#eae0c8;[^}]*background-color:\s*#241b12/i.test(css)],
+  ['dark mode is off (no stock dark palette)', !/\[data-bs-theme=dark\]\s*,?\s*:root|:root\[data-bs-theme=dark\]|#2b3035/i.test(css)],
 ];
 
 let failed = 0;
